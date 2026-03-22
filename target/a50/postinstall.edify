@@ -1,0 +1,27 @@
+ui_print("Checking and Expanding A50 Partitions...");
+
+# System
+run_program("/bin/e2fsck", "-fy", "/dev/block/by-name/system");
+run_program("/bin/resize2fs", "/dev/block/by-name/system");
+
+# Vendor
+run_program("/bin/e2fsck", "-fy", "/dev/block/by-name/vendor");
+run_program("/bin/resize2fs", "/dev/block/by-name/vendor");
+
+# Product
+run_program("/bin/e2fsck", "-fy", "/dev/block/by-name/product");
+run_program("/bin/resize2fs", "/dev/block/by-name/product");
+
+# ODM
+run_program("/bin/e2fsck", "-fy", "/dev/block/by-name/odm");
+run_program("/bin/resize2fs", "/dev/block/by-name/odm");
+
+# Prism (Regional/CSC features)
+run_program("/bin/e2fsck", "-fy", "/dev/block/by-name/prism");
+run_program("/bin/resize2fs", "/dev/block/by-name/prism");
+
+# Optics (Camera/Regional features)
+run_program("/bin/e2fsck", "-fy", "/dev/block/by-name/optics");
+run_program("/bin/resize2fs", "/dev/block/by-name/optics");
+
+ui_print("Partition resize complete.");
